@@ -7,4 +7,4 @@ const server = connect();
 server.use(static(__dirname + "/"));
 livereload.createServer({ applyCSSLive: false }).watch([__dirname + "/src", "index.html"]);
 
-server.listen(8080);
+server.listen(process.env.PORT);

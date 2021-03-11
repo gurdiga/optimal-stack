@@ -4,7 +4,7 @@ edit:
 e: edit
 
 open:
-	open index.html
+	open http://localhost:$(PORT)
 
 o: open
 

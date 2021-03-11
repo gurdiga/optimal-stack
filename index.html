@@ -1,0 +1,21 @@
+<head>
+  <link rel="stylesheet" href="/src/theme.css" />
+</head>
+<body is="page-layout">
+  This is the page content.
+
+  <hello-world color="red">Hey!</hello-world>
+</body>
+
+<script src="/src/utils.js"></script>
+<script src="/src/hello-world.js"></script>
+<script src="/src/page-layout.js"></script>
+
+<script>
+  document.write(
+    '<script src="http://' +
+      (location.host || "localhost").split(":")[0] +
+      ':35729/livereload.js?snipver=1"></' +
+      "script>"
+  );
+</script>

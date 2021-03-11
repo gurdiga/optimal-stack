@@ -1,0 +1,10 @@
+:host {
+  padding: 0.5em 1em;
+  background: tomato;
+  font-family: sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}

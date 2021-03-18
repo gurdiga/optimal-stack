@@ -1,8 +1,8 @@
 {
-  "name": "optimal-stack",
+  "name": "singularsight",
   "version": "1.0.0",
   "description": "",
-  "main": "hello-world.js",
+  "main": "index.html",
   "scripts": {
     "start": "node dev-server.js",
     "build": "tsc --project jsconfig.json",

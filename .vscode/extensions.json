@@ -8,8 +8,7 @@
     "formulahendry.auto-rename-tag",
     "nicolasparada.innerhtml",
     "esbenp.prettier-vscode",
-    "dbaeumer.vscode-eslint",
-    "shinnn.stylelint"
+    "dbaeumer.vscode-eslint"
   ],
   // List of extensions recommended by VS Code that should not be recommended for users of this workspace.
   "unwantedRecommendations": []

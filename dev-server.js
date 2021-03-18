@@ -1,10 +1,11 @@
-const connect = require("connect");
-const static = require("serve-static");
-const livereload = require("livereload");
+const server = require("connect")();
+const port = process.env.PORT || 3333;
 
-const server = connect();
+server.use(require("serve-static")(__dirname + "/"));
+require("livereload")
+  .createServer({ applyCSSLive: false })
+  .watch([__dirname + "/src", "index.html"]);
 
-server.use(static(__dirname + "/"));
-livereload.createServer({ applyCSSLive: false }).watch([__dirname + "/src", "index.html"]);
-
-server.listen(process.env.PORT);
+server.listen(port, function () {
+  console.log(`Listeninig on port ${port}`);
+});

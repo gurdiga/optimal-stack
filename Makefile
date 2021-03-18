@@ -8,5 +8,5 @@ open:
 
 o: open
 
-start:
+start: open
 	npm run start

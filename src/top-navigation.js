@@ -4,10 +4,9 @@ customElements.define(
   class extends HTMLElement {
     shadowRoot = this.attachShadow({ mode: "open" });
     template = "/src/top-navigation.html";
-    stylesheet = "/src/top-navigation.css";
 
     connectedCallback() {
-      loadTemplateAndStylesheet(this.shadowRoot, this.template, this.stylesheet);
+      loadTemplate(this.shadowRoot, this.template);
     }
   }
 );

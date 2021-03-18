@@ -3,14 +3,35 @@ customElements.define(
 
   class extends HTMLBodyElement {
     shadowRoot = this.attachShadow({ mode: "open" });
-
     template = "src/page-layout.html";
-    stylesheet = "src/page-layout.css";
 
     connectedCallback() {
-      loadTemplateAndStylesheet(this.shadowRoot, this.template, this.stylesheet).then(() => {
-        this.shadowRoot.querySelector("main").innerHTML = this.innerHTML;
+      loadTemplate(this.shadowRoot, this.template).then(() => {
+        this.setPageTitle(this.getAttribute("title"));
+        this.setInnerHTML(this.innerHTML);
       });
+    }
+
+    /**
+     *
+     * @param {string} innerHTML
+     */
+    setInnerHTML(innerHTML) {
+      const mainElement = this.shadowRoot.querySelector("main");
+
+      if (mainElement) {
+        mainElement.innerHTML = innerHTML;
+      }
+    }
+
+    /**
+     *
+     * @param {string | null} title
+     */
+    setPageTitle(title) {
+      if (title) {
+        document.title = title;
+      }
     }
   },
 

@@ -37,19 +37,32 @@ function loadStylesheet(container, href) {
  *
  * @param {ShadowRoot} shadowRoot
  * @param {string} template
- * @param {string} stylesheet
  * @returns Promise<void>
  */
-function loadTemplateAndStylesheet(shadowRoot, template, stylesheet) {
+function loadTemplate(shadowRoot, template) {
   return fetch(template)
     .then((response) => response.text())
     .then((html) => {
       shadowRoot.innerHTML = html;
 
-      loadStylesheet(shadowRoot, stylesheet);
-
       shadowRoot.querySelectorAll("script[src]").forEach((script) => {
-        loadScript(shadowRoot, script.getAttribute("src"));
+        const src = script.getAttribute("src")?.trim();
+
+        if (src) {
+          loadScript(shadowRoot, src);
+        } else {
+          console.warn(`Sckipping a <script> tag with empty "src" attribute in ${template}`);
+        }
+      });
+
+      shadowRoot.querySelectorAll(`link[rel="stylesheet"]`).forEach((link) => {
+        const href = link.getAttribute("href")?.trim();
+
+        if (href) {
+          loadStylesheet(shadowRoot, href);
+        } else {
+          console.warn(`Sckipping a <link[rel="stylesheet"]> tag with empty "href" attribute in ${template}`);
+        }
       });
     });
 }

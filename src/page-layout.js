@@ -3,7 +3,7 @@ customElements.define(
 
   class extends HTMLBodyElement {
     shadowRoot = this.attachShadow({ mode: "open" });
-    template = "src/page-layout.html";
+    template = "/src/page-layout.html";
 
     connectedCallback() {
       loadTemplate(this.shadowRoot, this.template).then(() => {

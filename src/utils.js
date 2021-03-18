@@ -45,24 +45,24 @@ function loadTemplate(shadowRoot, template) {
     .then((html) => {
       shadowRoot.innerHTML = html;
 
-      shadowRoot.querySelectorAll("script[src]").forEach((script) => {
-        const src = script.getAttribute("src")?.trim();
-
-        if (src) {
-          loadScript(shadowRoot, src);
-        } else {
-          console.warn(`Sckipping a <script> tag with empty "src" attribute in ${template}`);
-        }
-      });
-
-      shadowRoot.querySelectorAll(`link[rel="stylesheet"]`).forEach((link) => {
-        const href = link.getAttribute("href")?.trim();
-
-        if (href) {
-          loadStylesheet(shadowRoot, href);
-        } else {
-          console.warn(`Sckipping a <link[rel="stylesheet"]> tag with empty "href" attribute in ${template}`);
-        }
-      });
+      loadResource("script", "src");
+      loadResource(`link[rel="stylesheet"]`, "href");
     });
+
+  /**
+   *
+   * @param {string} selector
+   * @param {string} attribute
+   */
+  function loadResource(selector, attribute) {
+    shadowRoot.querySelectorAll(selector).forEach((element) => {
+      const src = element.getAttribute(attribute)?.trim();
+
+      if (src) {
+        loadScript(shadowRoot, src);
+      } else {
+        console.warn(`Skipping a ${selector} tag with empty "${src}" attribute in ${template}`);
+      }
+    });
+  }
 }

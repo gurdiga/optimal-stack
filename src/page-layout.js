@@ -1,7 +1,7 @@
 customElements.define(
   "page-layout",
 
-  class extends HTMLBodyElement {
+  class extends HTMLElement {
     shadowRoot = this.attachShadow({ mode: "open" });
     template = "/src/page-layout.html";
 
@@ -33,7 +33,5 @@ customElements.define(
         document.title = title;
       }
     }
-  },
-
-  { extends: "body" }
+  }
 );

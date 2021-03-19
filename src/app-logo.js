@@ -3,14 +3,10 @@ customElements.define(
 
   class extends HTMLElement {
     shadowRoot = this.attachShadow({ mode: "open" });
-    stylesheet = "/src/app-logo.css";
+    template = "/src/app-logo.html";
 
     connectedCallback() {
-      this.shadowRoot.innerHTML = `
-        <a href="/">SINGLE<b>SIGHT</b></a>
-      `;
-
-      loadStylesheet(this.shadowRoot, this.stylesheet);
+      loadTemplate(this.shadowRoot, this.template);
     }
   }
 );

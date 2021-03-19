@@ -26,15 +26,6 @@ function loadScript(container, src) {
 
 /**
  *
- * @param {HTMLElement | ShadowRoot} container
- * @param {string} href
- */
-function loadStylesheet(container, href) {
-  appendElement(container, [["link", { href, rel: "stylesheet" }]]);
-}
-
-/**
- *
  * @param {ShadowRoot} shadowRoot
  * @param {string} template
  * @returns Promise<void>
@@ -45,16 +36,13 @@ function loadTemplate(shadowRoot, template) {
     .then((html) => {
       shadowRoot.innerHTML = html;
 
-      loadResource("script", "src");
-      loadResource(`link[rel="stylesheet"]`, "href");
+      loadScripts();
     });
 
-  /**
-   *
-   * @param {string} selector
-   * @param {string} attribute
-   */
-  function loadResource(selector, attribute) {
+  function loadScripts() {
+    const selector = "script[src]";
+    const attribute = "src";
+
     shadowRoot.querySelectorAll(selector).forEach((element) => {
       const src = element.getAttribute(attribute)?.trim();
 

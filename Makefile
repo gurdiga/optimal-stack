@@ -10,3 +10,8 @@ o: open
 
 start: open
 	npm run start
+
+pre-commit:
+	@npm run --silent pre-commit
+
+pc: pre-commit

@@ -8,20 +8,7 @@ customElements.define(
     connectedCallback() {
       loadTemplate(this.shadowRoot, this.template).then(() => {
         this.setPageTitle(this.getAttribute("title"));
-        this.setInnerHTML(this.innerHTML);
       });
-    }
-
-    /**
-     *
-     * @param {string} innerHTML
-     */
-    setInnerHTML(innerHTML) {
-      const mainElement = this.shadowRoot.querySelector("main");
-
-      if (mainElement) {
-        mainElement.innerHTML = innerHTML;
-      }
     }
 
     /**

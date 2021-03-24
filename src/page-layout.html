@@ -1,6 +1,7 @@
 <top-bar>
   <two-sided-layout>
     <div slot="left-side">
+      <top-logo></top-logo>
       <top-navigation></top-navigation>
     </div>
 
@@ -12,12 +13,13 @@
   </two-sided-layout>
 </top-bar>
 
-<main><!-- Content will go here --></main>
+<slot></main>
 
 <footer>This is the footer</footer>
 
 <script src="/src/top-bar.js"></script>
 <script src="/src/two-sided-layout.js"></script>
+<script src="/src/top-logo.js"></script>
 <script src="/src/top-navigation.js"></script>
 <script src="/src/app-search.js"></script>
 <script src="/src/sign-in-button.js"></script>

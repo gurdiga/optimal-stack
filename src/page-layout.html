@@ -13,9 +13,16 @@
   </two-sided-layout>
 </top-bar>
 
-<slot></main>
+<slot></slot>
 
 <footer>This is the footer</footer>
+
+<style>
+  div[slot="left-side"],
+  div[slot="right-side"] {
+    display: flex;
+  }
+</style>
 
 <script src="/src/top-bar.js"></script>
 <script src="/src/two-sided-layout.js"></script>

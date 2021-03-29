@@ -18,6 +18,13 @@
 <footer>This is the footer</footer>
 
 <style>
+  :host {
+    display: flex;
+    flex-direction: column;
+    width: var(--layout-width);
+    margin: 0 auto;
+  }
+
   div[slot="left-side"],
   div[slot="right-side"] {
     display: flex;

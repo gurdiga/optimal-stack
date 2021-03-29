@@ -13,6 +13,6 @@ Here I’m playing with the idea of having the simplest working frontend stack:
 
 ## TODO
 
-- Add HTML linting ([tidy](https://www.html-tidy.org/documentation/)).
+- Add HTML linting? (tidy sucks?!)
 - Add linting for other things?
 - Figure out the unit testing.

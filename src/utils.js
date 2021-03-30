@@ -21,7 +21,7 @@ function appendElement(container, elementTuple) {
  * @param {string} src
  */
 function loadScript(container, src) {
-  appendElement(container, [["script", { src }]]);
+  appendElement(container, [['script', { src }]]);
 }
 
 /**
@@ -32,18 +32,18 @@ function loadScript(container, src) {
  */
 function loadTemplate(shadowRoot, template) {
   return fetch(template)
-    .then((response) => response.text())
-    .then((html) => {
+    .then(response => response.text())
+    .then(html => {
       shadowRoot.innerHTML = html;
 
       loadScripts();
     });
 
   function loadScripts() {
-    const selector = "script[src]";
-    const attribute = "src";
+    const selector = 'script[src]';
+    const attribute = 'src';
 
-    shadowRoot.querySelectorAll(selector).forEach((element) => {
+    shadowRoot.querySelectorAll(selector).forEach(element => {
       const src = element.getAttribute(attribute)?.trim();
 
       if (src) {

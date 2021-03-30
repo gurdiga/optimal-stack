@@ -1,13 +1,13 @@
 customElements.define(
-  "page-layout",
+  'page-layout',
 
   class extends HTMLElement {
-    shadowRoot = this.attachShadow({ mode: "open" });
-    template = "/src/page-layout.html";
+    shadowRoot = this.attachShadow({ mode: 'open' });
+    template = '/src/page-layout.html';
 
     connectedCallback() {
       loadTemplate(this.shadowRoot, this.template).then(() => {
-        this.setPageTitle(this.getAttribute("title"));
+        this.setPageTitle(this.getAttribute('title'));
       });
     }
 

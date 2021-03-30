@@ -1,9 +1,9 @@
 customElements.define(
-  "top-logo",
+  'top-logo',
 
   class extends HTMLElement {
-    shadowRoot = this.attachShadow({ mode: "open" });
-    template = "/src/top-logo.html";
+    shadowRoot = this.attachShadow({ mode: 'open' });
+    template = '/src/top-logo.html';
 
     connectedCallback() {
       loadTemplate(this.shadowRoot, this.template);

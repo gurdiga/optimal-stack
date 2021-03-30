@@ -1,6 +1,6 @@
 <nav>
   <ul>
-    <li><a href="/">Home</a></li>
+    <li><a href="/" class="current">Home</a></li>
     <li><a href="#page2">Page 2</a></li>
     <li><a href="#page3">Page 3</a></li>
   </ul>
@@ -11,6 +11,8 @@
     display: flex;
     align-items: center;
     font-family: Georgia, serif;
+
+    --active-link-color: #fff4f8;
   }
 
   nav ul {
@@ -29,8 +31,12 @@
     transition: color 0.25s;
   }
 
+  nav ul li a.current {
+    color: var(--active-link-color);
+  }
+
   nav ul li a:hover {
-    color: #fff4f8;
+    color: var(--active-link-color);
   }
 
   nav ul li:not(:first-of-type) {

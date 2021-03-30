@@ -1,24 +1,24 @@
 @media (min-width: 576px) {
   :root {
-    --layout-width: 95%;
+    --content-width: 95%;
   }
 }
 
 @media (min-width: 768px) {
   :root {
-    --layout-width: 90%;
+    --content-width: 90%;
   }
 }
 
 @media (min-width: 992px) {
   :root {
-    --layout-width: 85%;
+    --content-width: 85%;
   }
 }
 
 @media (min-width: 1200px) {
   :root {
-    --layout-width: 992px;
+    --content-width: 992px;
   }
 }
 

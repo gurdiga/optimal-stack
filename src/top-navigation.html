@@ -10,12 +10,13 @@
   :host {
     display: flex;
     align-items: center;
+    font-family: Georgia, serif;
   }
 
   nav ul {
     display: flex;
-    margin: 0;
-    padding: 0.5em;
+    margin: 0 0 0 2rem;
+    padding: 0.5rem;
   }
 
   nav ul li {
@@ -23,15 +24,21 @@
   }
 
   nav ul li a {
-    color: var(--color-text-links);
+    color: #f5a0be;
+    text-decoration: none;
+    transition: color 0.25s;
+  }
+
+  nav ul li a:hover {
+    color: #fff4f8;
   }
 
   nav ul li:not(:first-of-type) {
-    margin-left: 0.5em;
+    margin-left: 1rem;
   }
 
   main {
-    padding: 1em;
+    padding: 1rem;
   }
 
   footer {

@@ -6,19 +6,7 @@ customElements.define(
     template = '/src/app-layout.html';
 
     connectedCallback() {
-      loadTemplate(this.shadowRoot, this.template).then(() => {
-        this.setPageTitle(this.getAttribute('title'));
-      });
-    }
-
-    /**
-     *
-     * @param {string | null} title
-     */
-    setPageTitle(title) {
-      if (title) {
-        document.title = title;
-      }
+      loadTemplate(this.shadowRoot, this.template);
     }
   }
 );

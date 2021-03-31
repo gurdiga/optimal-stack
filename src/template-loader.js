@@ -37,6 +37,7 @@ function loadTemplate(shadowRoot, template) {
       shadowRoot.innerHTML = html;
 
       loadScripts();
+      loadStylesheets();
     });
 
   function loadScripts() {
@@ -48,6 +49,25 @@ function loadTemplate(shadowRoot, template) {
 
       if (src) {
         loadScript(shadowRoot, src);
+      } else {
+        console.warn(`Skipping a ${selector} tag with empty "${src}" attribute in ${template}`);
+      }
+    });
+  }
+
+  function loadStylesheets() {
+    const selector = 'link[rel="stylesheet"]';
+    const attribute = 'href';
+
+    shadowRoot.querySelectorAll(selector).forEach(element => {
+      const src = element.getAttribute(attribute)?.trim();
+
+      if (src) {
+        appendElement(document.head, [['link', { rel: 'stylesheet', href: src }]]);
+
+        const commentedOutStylesheetLink = document.createComment(element.outerHTML);
+
+        shadowRoot.replaceChild(commentedOutStylesheetLink, element);
       } else {
         console.warn(`Skipping a ${selector} tag with empty "${src}" attribute in ${template}`);
       }

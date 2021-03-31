@@ -1,5 +1,8 @@
 <top-bar></top-bar>
-<slot></slot>
+
+<main>
+  <slot></slot>
+</main>
 
 <footer>This is the footer</footer>
 
@@ -7,6 +10,11 @@
   :host {
     display: flex;
     flex-direction: column;
+    margin: 0 auto;
+  }
+
+  main {
+    width: var(--content-width);
     margin: 0 auto;
   }
 </style>

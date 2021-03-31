@@ -10,9 +10,7 @@
   :host {
     display: flex;
     align-items: center;
-    font-family: Georgia, serif;
-
-    --active-link-color: #fff4f8;
+    font-family: var(--font-family-top-bar);
   }
 
   nav ul {
@@ -26,17 +24,17 @@
   }
 
   nav ul li a {
-    color: #f5a0be;
+    color: var(--color-top-bar-link);
     text-decoration: none;
     transition: color 0.25s;
   }
 
   nav ul li a.current {
-    color: var(--active-link-color);
+    color: var(--color-top-bar-link-active);
   }
 
   nav ul li a:hover {
-    color: var(--active-link-color);
+    color: var(--color-top-bar-link-active);
   }
 
   nav ul li:not(:first-of-type) {

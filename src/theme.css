@@ -1,3 +1,6 @@
 :root {
-  --color-text-links: blue;
+  --color-top-bar-link: #f5a0be;
+  --color-top-bar-link-active: #fff4f8;
+
+  --font-family-top-bar: Georgia, serif;
 }

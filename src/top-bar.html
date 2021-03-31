@@ -1,4 +1,15 @@
-<div class="content"><slot></slot></div>
+<div class="content">
+  <two-sided-layout>
+    <div slot="left-side">
+      <top-logo></top-logo>
+      <top-navigation></top-navigation>
+    </div>
+
+    <div slot="right-side">
+      <sign-in-button></sign-in-button>
+    </div>
+  </two-sided-layout>
+</div>
 
 <style>
   :host {
@@ -13,4 +24,14 @@
     width: var(--content-width);
     margin: 0 auto;
   }
+
+  div[slot='left-side'],
+  div[slot='right-side'] {
+    display: flex;
+  }
 </style>
+
+<script src="/src/two-sided-layout.js"></script>
+<script src="/src/top-logo.js"></script>
+<script src="/src/top-navigation.js"></script>
+<script src="/src/sign-in-button.js"></script>

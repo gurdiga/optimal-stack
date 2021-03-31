@@ -1,18 +1,4 @@
-<top-bar>
-  <two-sided-layout>
-    <div slot="left-side">
-      <top-logo></top-logo>
-      <top-navigation></top-navigation>
-    </div>
-
-    <div slot="right-side">
-      <app-search></app-search>
-      <sign-in-button></sign-in-button>
-      <try-button></try-button>
-    </div>
-  </two-sided-layout>
-</top-bar>
-
+<top-bar></top-bar>
 <slot></slot>
 
 <footer>This is the footer</footer>
@@ -23,17 +9,6 @@
     flex-direction: column;
     margin: 0 auto;
   }
-
-  div[slot='left-side'],
-  div[slot='right-side'] {
-    display: flex;
-  }
 </style>
 
 <script src="/src/top-bar.js"></script>
-<script src="/src/two-sided-layout.js"></script>
-<script src="/src/top-logo.js"></script>
-<script src="/src/top-navigation.js"></script>
-<script src="/src/app-search.js"></script>
-<script src="/src/sign-in-button.js"></script>
-<script src="/src/try-button.js"></script>

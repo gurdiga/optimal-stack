@@ -2,5 +2,7 @@
   --color-top-bar-link: #f5a0be;
   --color-top-bar-link-active: #fff4f8;
 
-  --font-family-top-bar: Georgia, serif;
+  --font-family-default: Georgia, serif;
+  --font-family-top-bar: var(--font-family-default);
+  --font-family-headings: var(--font-family-default);
 }

@@ -8,15 +8,15 @@
     <app-layout>
       <sign-in-form></sign-in-form>
 
-      <!-- TODO: create an app-alert component? -->
-      <p>
-        <b>NOTĂ:</b> Dacă încă nu aveți un cont, vi-l puteți crea completând
-        <a href="sign-up.html">Formularul de înregistrare</a>.
-      </p>
+      <app-alert style="margin: 1rem 0">
+        Dacă încă nu aveți un cont, vi-l puteți crea completând
+        <a href="/sign-up.html">Formularul de înregistrare</a>.
+      </app-alert>
     </app-layout>
 
     <script src="/src/template-loader.js"></script>
     <script src="/src/app-layout.js"></script>
     <script src="/src/sign-in-form.js"></script>
+    <script src="/src/app-alert.js"></script>
   </body>
 </html>

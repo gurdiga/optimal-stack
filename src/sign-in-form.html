@@ -1,3 +1,5 @@
+<!-- TODO: Make this pretty! -->
+
 <h1>Autentificare</h1>
 
 <form>
@@ -12,8 +14,18 @@
 </form>
 
 <style>
+  :host {
+    display: block;
+    width: 30rem;
+    padding: 1rem;
+    background-color: var(--color-top-bar-link-active);
+    border: 1px solid var(--color-top-bar-link);
+    border-radius: var(--border-radius-container);
+  }
+
   h1 {
-    font-family: var(--font-family-headings);
+    font-family: var(--font-family-heading);
+    margin-top: 0;
   }
 
   form {
@@ -27,5 +39,6 @@
 
   button {
     margin-top: 1rem;
+    border-radius: var(--border-radius-form-control);
   }
 </style>

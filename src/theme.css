@@ -4,7 +4,8 @@
 
   --font-family-default: Georgia, serif;
   --font-family-top-bar: var(--font-family-default);
-  --font-family-headings: var(--font-family-default);
+  --font-family-heading: var(--font-family-default);
 
-  --border-radius: 0.5rem;
+  --border-radius-container: 0.5rem;
+  --border-radius-form-control: 0.25rem;
 }

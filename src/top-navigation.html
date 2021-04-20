@@ -29,11 +29,16 @@
   }
 
   label[for='mobile-menu-toggle']::after {
-    content: '⌄';
+    content: '▾';
     margin-left: 0.35rem;
-    position: absolute;
-    margin-top: 0;
+    display: inline-block;
     font-size: 0.8em;
+    transform: rotate(0deg);
+    transition: transform 0.25s;
+  }
+
+  :checked ~ label[for='mobile-menu-toggle']::after {
+    transform: rotate(180deg);
   }
 
   #mobile-menu-toggle {

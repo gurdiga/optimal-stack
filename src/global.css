@@ -1,7 +1,9 @@
+:root {
+  --content-width: 95%;
+}
+
 @media (min-width: 576px) {
-  :root {
-    --content-width: 95%;
-  }
+  /* This is here just for reference. The styles are above. */
 }
 
 @media (min-width: 768px) {

@@ -1,3 +1,7 @@
+<input type="checkbox" name="mobile-menu-toggle" id="mobile-menu-toggle" />
+
+<label for="mobile-menu-toggle">Meniu</label>
+
 <nav>
   <ul>
     <li><a href="/" class="current">Home</a></li>
@@ -9,14 +13,44 @@
 <style>
   :host {
     display: flex;
-    align-items: center;
+    flex-direction: column;
     font-family: var(--font-family-top-bar);
+    padding: 0 1rem;
+  }
+
+  label[for='mobile-menu-toggle'] {
+    color: var(--color-top-bar-link);
+    display: block;
+    margin-top: 0.5rem;
+  }
+
+  :checked ~ label[for='mobile-menu-toggle'] {
+    color: var(--color-top-bar-link-active);
+  }
+
+  label[for='mobile-menu-toggle']::after {
+    content: '⌄';
+    margin-left: 0.35rem;
+    position: absolute;
+    margin-top: 0;
+    font-size: 0.8em;
+  }
+
+  #mobile-menu-toggle {
+    display: none;
+  }
+
+  nav {
+    display: none;
+  }
+
+  :checked ~ nav {
+    display: flex;
   }
 
   nav ul {
-    display: flex;
-    margin: 0 0 0 2rem;
-    padding: 0.5rem;
+    padding: 0.5rem 0;
+    margin: 0;
   }
 
   nav ul li {
@@ -37,15 +71,7 @@
     color: var(--color-top-bar-link-active);
   }
 
-  nav ul li:not(:first-of-type) {
-    margin-left: 1rem;
-  }
-
   main {
     padding: 1rem;
-  }
-
-  footer {
-    background: rgba(120, 20, 20, 0.2);
   }
 </style>

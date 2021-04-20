@@ -30,6 +30,7 @@ function loadScript(container, src) {
  * @param {string} template
  * @returns Promise<void>
  */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function loadTemplate(shadowRoot, template) {
   return fetch(template)
     .then(response => response.text())

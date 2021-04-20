@@ -15,3 +15,6 @@ pre-commit:
 	@npm run --silent pre-commit
 
 pc: pre-commit
+
+git-hooks:
+	cp pre-commit .git/hooks/

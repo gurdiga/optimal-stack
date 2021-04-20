@@ -5,13 +5,15 @@
   "main": "index.html",
   "scripts": {
     "start": "node dev-server.js",
-    "build": "time (npm run lint && npm run format-check && npm run typecheck)",
+    "build": "time (npm run format-check && npm run lint && npm run stylelint && npm run typecheck)",
     "typecheck": "tsc --project jsconfig.json",
     "format-check": "prettier --check .",
-    "format-check-pre-commit": "git diff --cached --name-only --diff-filter=ACM | xargs prettier --check",
+    "format-check-pre-commit": "git diff --cached --name-only --diff-filter=ACM | xargs -r prettier --check",
     "lint": "eslint src/**/*.js",
-    "lint-pre-commit": "git diff --cached --name-only --diff-filter=ACM | xargs eslint",
-    "pre-commit": "time (npm run format-check-pre-commit && npm run lint-pre-commit && npm run typecheck)",
+    "lint-pre-commit": "git diff --cached --name-only --diff-filter=ACM | grep -E '.js$' | xargs -r eslint",
+    "stylelint": "stylelint src",
+    "stylelint-pre-commit": "git diff --cached --name-only --diff-filter=ACM | grep -E '.(css|html)$' | xargs -r stylelint",
+    "pre-commit": "time (npm run format-check-pre-commit && npm run lint-pre-commit && npm run stylelint-pre-commit && npm run typecheck)",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -26,6 +28,8 @@
     "livereload": "0.9.2",
     "prettier": "2.2.1",
     "serve-static": "1.14.1",
+    "stylelint": "13.12.0",
+    "stylelint-config-standard": "21.0.0",
     "typescript": "4.2.2"
   }
 }

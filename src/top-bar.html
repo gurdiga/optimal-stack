@@ -1,11 +1,11 @@
 <div class="content">
   <two-sided-layout>
-    <div slot="left-side" style="padding: 1rem 0">
+    <div slot="left-side">
       <top-logo></top-logo>
       <top-navigation></top-navigation>
     </div>
 
-    <div slot="right-side" style="padding: 1rem 0">
+    <div slot="right-side">
       <sign-in-button></sign-in-button>
     </div>
   </two-sided-layout>
@@ -28,6 +28,7 @@
   div[slot='left-side'],
   div[slot='right-side'] {
     display: flex;
+    padding: 0.5rem 0;
   }
 </style>
 

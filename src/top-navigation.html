@@ -18,7 +18,7 @@
     padding: 0 1rem;
 
     --nav-menu-item-count: 3;
-    --nav-menu-item-heihgt: 1.5rem;
+    --nav-menu-item-heihgt: 2rem;
     --nav-menu-items-total-height: var(--nav-menu-item-heihgt) * var(--nav-menu-item-count);
 
     --nav-menu-vspacing: 0.5rem;
@@ -31,6 +31,7 @@
     color: var(--color-top-bar-link);
     display: block;
     margin-top: 0.5rem;
+    white-space: nowrap;
   }
 
   :checked ~ label[for='mobile-menu-toggle'] {
@@ -72,12 +73,18 @@
   nav ul li {
     list-style-type: none;
     line-height: var(--nav-menu-item-heihgt);
+    white-space: nowrap;
   }
 
   nav ul li a {
     color: var(--color-top-bar-link);
     text-decoration: none;
     transition: color 0.25s;
+  }
+
+  nav ul li a::before {
+    content: '•';
+    margin-right: 0.25rem;
   }
 
   nav ul li a.current {
@@ -90,5 +97,32 @@
 
   main {
     padding: 1rem;
+  }
+
+  @media (min-width: 400px) {
+    :host {
+      --nav-menu-item-heihgt: 1.5rem;
+      --expanded-nav-height: auto;
+    }
+
+    label[for='mobile-menu-toggle'] {
+      display: none;
+    }
+
+    nav {
+      height: auto;
+    }
+
+    nav ul {
+      display: flex;
+    }
+
+    nav ul li:not(:first-of-type) {
+      margin-left: 0.75rem;
+    }
+
+    nav ul li a::before {
+      content: '';
+    }
   }
 </style>

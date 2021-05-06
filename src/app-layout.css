@@ -1,0 +1,12 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+main,
+footer {
+  width: var(--content-width);
+  overflow-x: hidden;
+  margin: 0 auto;
+}

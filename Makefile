@@ -18,3 +18,9 @@ pc: pre-commit
 
 git-hooks:
 	cp pre-commit .git/hooks/
+
+test: open-tests
+	npm run start
+
+open-tests:
+	open http://localhost:$(PORT)/tests.html

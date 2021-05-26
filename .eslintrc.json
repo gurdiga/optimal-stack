@@ -1,6 +1,15 @@
 {
   "globals": {
+    "describe": "readonly",
+    "before": "readonly",
+    "beforeEach": "readonly",
+    "it": "readonly",
+    "chai": "readonly",
+    "testScreen": "readonly",
+    "loadFixture": "readonly",
+    "waitForComponents": "readonly",
     "loadTemplate": "readonly",
+    "loadTemplate2": "readonly",
     "loadScript": "readonly"
   },
   "env": {

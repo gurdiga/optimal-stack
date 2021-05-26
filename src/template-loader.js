@@ -1,32 +1,40 @@
 /**
  *
  * @param {HTMLElement | ShadowRoot} container
- * @param {[string, Record<string, string>][]} elementTuple
+ * @param {string} tagName
+ * @param {Record<string, string>} attrs
  */
-function appendElement(container, elementTuple) {
-  elementTuple.forEach(([tagName, attrs]) => {
-    const element = document.createElement(tagName);
+function appendElement(container, tagName, attrs) {
+  const element = document.createElement(tagName);
 
-    for (const attr in attrs) {
-      element.setAttribute(attr, attrs[attr]);
-    }
+  for (const attr in attrs) {
+    element.setAttribute(attr, attrs[attr]);
+  }
 
-    container.appendChild(element);
-  });
+  container.appendChild(element);
+
+  return element;
 }
 
 /**
  *
  * @param {HTMLElement | ShadowRoot} container
  * @param {string} src
+ * @returns { Promise<void> }
  */
-function loadScript(container, src) {
-  appendElement(container, [['script', { src }]]);
+async function loadScript(container, src) {
+  const script = appendElement(container, 'script', { src });
+
+  return new Promise((resolve, reject) => {
+    script.onabort = () => reject(new Error('Script onabort'));
+    script.onerror = () => reject(new Error('Script onerror'));
+    script.onload = () => resolve();
+  });
 }
 
 /**
  *
- * @param {ShadowRoot} shadowRoot
+ * @param {ShadowRoot | HTMLElement} shadowRoot
  * @param {string} template
  * @returns Promise<void>
  */
@@ -34,37 +42,43 @@ function loadScript(container, src) {
 function loadTemplate(shadowRoot, template) {
   return fetch(template)
     .then(response => response.text())
-    .then(html => {
+    .then(async html => {
       shadowRoot.innerHTML = html;
 
-      loadScripts();
-      loadStylesheets();
+      await loadScripts();
+      await loadStylesheets();
     });
 
-  function loadScripts() {
+  async function loadScripts() {
     const selector = 'script[src]';
     const attribute = 'src';
 
-    shadowRoot.querySelectorAll(selector).forEach(element => {
+    shadowRoot.querySelectorAll(selector).forEach(async element => {
       const src = element.getAttribute(attribute)?.trim();
 
       if (src) {
-        loadScript(shadowRoot, src);
+        await loadScript(shadowRoot, src);
       } else {
         console.warn(`Skipping a ${selector} tag with empty "${src}" attribute in ${template}`);
       }
     });
   }
 
-  function loadStylesheets() {
+  async function loadStylesheets() {
     const selector = 'link[rel="stylesheet"]';
     const attribute = 'href';
 
-    shadowRoot.querySelectorAll(selector).forEach(element => {
+    shadowRoot.querySelectorAll(selector).forEach(async element => {
       const src = element.getAttribute(attribute)?.trim();
 
       if (src) {
-        appendElement(document.head, [['link', { rel: 'stylesheet', href: src }]]);
+        const link = appendElement(document.head, 'link', { rel: 'stylesheet', href: src });
+
+        await /** @type {Promise<void>} */ (new Promise((resolve, reject) => {
+          link.onabort = () => reject('Stylesheet link onabort');
+          link.onerror = () => reject('Stylesheet link onerror');
+          link.onload = () => resolve();
+        }));
 
         const commentedOutStylesheetLink = document.createComment(element.outerHTML);
 

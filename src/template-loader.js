@@ -20,72 +20,82 @@ function appendElement(container, tagName, attrs) {
  *
  * @param {HTMLElement | ShadowRoot} container
  * @param {string} src
- * @returns { Promise<void> }
  */
-async function loadScript(container, src) {
+function loadScript(container, src) {
   const script = appendElement(container, 'script', { src });
 
-  return new Promise((resolve, reject) => {
-    script.onabort = () => reject(new Error('Script onabort'));
-    script.onerror = () => reject(new Error('Script onerror'));
-    script.onload = () => resolve();
-  });
+  script.onabort = () => console.error(new Error(`Script onabort: ${src}`));
+  script.onerror = () => console.error(new Error(`Script onerror: ${src}`));
 }
 
 /**
  *
  * @param {ShadowRoot | HTMLElement} shadowRoot
  * @param {string} template
- * @returns Promise<void>
  */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-function loadTemplate(shadowRoot, template) {
+async function loadTemplate(shadowRoot, template) {
   return fetch(template)
     .then(response => response.text())
-    .then(async html => {
+    .then(html => {
       shadowRoot.innerHTML = html;
 
-      await loadScripts();
-      await loadStylesheets();
+      loadScripts();
+      loadStylesheets();
     });
 
-  async function loadScripts() {
+  function loadScripts() {
     const selector = 'script[src]';
     const attribute = 'src';
 
-    shadowRoot.querySelectorAll(selector).forEach(async element => {
+    for (const element of shadowRoot.querySelectorAll(selector)) {
       const src = element.getAttribute(attribute)?.trim();
 
       if (src) {
-        await loadScript(shadowRoot, src);
+        loadScript(shadowRoot, src);
       } else {
         console.warn(`Skipping a ${selector} tag with empty "${src}" attribute in ${template}`);
       }
-    });
+    }
   }
 
   async function loadStylesheets() {
     const selector = 'link[rel="stylesheet"]';
     const attribute = 'href';
 
-    shadowRoot.querySelectorAll(selector).forEach(async element => {
-      const src = element.getAttribute(attribute)?.trim();
+    for (const element of shadowRoot.querySelectorAll(selector)) {
+      const href = element.getAttribute(attribute)?.trim();
+      const scope = element.getAttribute('data-scope');
+      const container = scope === 'global' ? document.head : shadowRoot;
 
-      if (src) {
-        const link = appendElement(document.head, 'link', { rel: 'stylesheet', href: src });
+      if (href) {
+        const link = appendElement(container, 'link', { rel: 'stylesheet', href });
 
-        await /** @type {Promise<void>} */ (new Promise((resolve, reject) => {
-          link.onabort = () => reject('Stylesheet link onabort');
-          link.onerror = () => reject('Stylesheet link onerror');
-          link.onload = () => resolve();
-        }));
+        link.onabort = () => console.error(`Stylesheet link onabort: ${href}`);
+        link.onerror = () => console.error(`Stylesheet link onerror: ${href}`);
 
         const commentedOutStylesheetLink = document.createComment(element.outerHTML);
 
         shadowRoot.replaceChild(commentedOutStylesheetLink, element);
       } else {
-        console.warn(`Skipping a ${selector} tag with empty "${src}" attribute in ${template}`);
+        console.warn(`Skipping a ${selector} tag with empty "${href}" attribute in ${template}`);
       }
-    });
+    }
   }
+}
+
+/**
+ * @param {string[]} tagNames
+ * @param {ShadowRoot} shadowRoot
+ * @returns {Promise<void[]>}
+ */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+function whenReady(tagNames, shadowRoot) {
+  return Promise.all(
+    tagNames.map(tagName => {
+      const element = /** @type {Element} */ (shadowRoot.querySelector(tagName));
+
+      return new Promise(resolve => element.addEventListener('ready', resolve));
+    })
+  );
 }

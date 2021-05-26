@@ -6,9 +6,11 @@ customElements.define(
     template = '/src/app-layout.html';
 
     async connectedCallback() {
+      console.time(`app-layout`);
       await loadTemplate(this.shadowRoot, this.template);
+      await whenReady(['app-styles', 'top-bar'], this.shadowRoot);
       this.dispatchEvent(new CustomEvent('ready'));
-      console.log('ready', this.shadowRoot.innerHTML, this.offsetHeight);
+      console.timeEnd(`app-layout`);
     }
   }
 );

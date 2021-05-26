@@ -10,6 +10,7 @@
     "waitForComponents": "readonly",
     "loadTemplate": "readonly",
     "loadTemplate2": "readonly",
+    "whenReady": "readonly",
     "loadScript": "readonly"
   },
   "env": {

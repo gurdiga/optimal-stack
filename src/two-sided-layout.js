@@ -5,8 +5,11 @@ customElements.define(
     shadowRoot = this.attachShadow({ mode: 'open' });
     template = '/src/two-sided-layout.html';
 
-    connectedCallback() {
-      loadTemplate(this.shadowRoot, this.template);
+    async connectedCallback() {
+      console.time(`two-sided-layout`);
+      await loadTemplate(this.shadowRoot, this.template);
+      this.dispatchEvent(new CustomEvent('ready'));
+      console.timeEnd(`two-sided-layout`);
     }
   }
 );

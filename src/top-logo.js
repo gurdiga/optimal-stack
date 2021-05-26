@@ -5,8 +5,12 @@ customElements.define(
     shadowRoot = this.attachShadow({ mode: 'open' });
     template = '/src/top-logo.html';
 
-    connectedCallback() {
-      loadTemplate(this.shadowRoot, this.template);
+    async connectedCallback() {
+      console.time(`top-logo`);
+      await loadTemplate(this.shadowRoot, this.template);
+      await whenReady(['app-logo'], this.shadowRoot);
+      this.dispatchEvent(new CustomEvent('ready'));
+      console.timeEnd(`top-logo`);
     }
   }
 );

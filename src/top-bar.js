@@ -5,8 +5,13 @@ customElements.define(
     shadowRoot = this.attachShadow({ mode: 'open' });
     template = '/src/top-bar.html';
 
-    connectedCallback() {
-      loadTemplate(this.shadowRoot, this.template);
+    async connectedCallback() {
+      console.time(`top-bar`);
+      await loadTemplate(this.shadowRoot, this.template);
+      await whenReady(['two-sided-layout', 'top-logo', 'top-navigation', 'sign-in-button'], this.shadowRoot);
+      await customElements.whenDefined('top-navigation');
+      this.dispatchEvent(new CustomEvent('ready'));
+      console.timeEnd(`top-bar`);
     }
   }
 );

@@ -1,3 +1,5 @@
+default: pre-commit
+
 edit:
 	code -n .
 
@@ -11,6 +13,7 @@ o: open
 start: open
 	npm run start
 
+.PHONY: pre-commit
 pre-commit:
 	@npm run --silent pre-commit
 

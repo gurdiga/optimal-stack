@@ -37,7 +37,7 @@ class AppHTMLElement extends HTMLElement {
 
     this.time(tagName, async () => {
       await this.loadTemplate(this.shadowRoot, this.template);
-      await this.whenChildAppElementsReady();
+      await this.whenChildAppElementsReady(this.shadowRoot, this.childAppElements);
       await this.init();
       this.dispatchEvent(new CustomEvent('ready'));
     });
@@ -77,17 +77,25 @@ class AppHTMLElement extends HTMLElement {
   /**
    * Waits for the givem elements to announce their readiness.
    *
+   * @param {ShadowRoot | HTMLElement} container
+   * @param {string[]} childAppElements
+   *
    * @returns {Promise<void[]>}
    */
-  whenChildAppElementsReady() {
+  static whenChildAppElementsReady(container, childAppElements) {
     return Promise.all(
-      this.childAppElements.map(tagName => {
-        const element = /** @type {Element} */ (this.shadowRoot.querySelector(tagName));
+      childAppElements.map(tagName => {
+        const element = /** @type {Element} */ (container.querySelector(tagName));
 
         return new Promise(resolve => element.addEventListener('ready', resolve));
       })
     );
   }
+
+  /**
+   * Just a convenience reference for use inside AppHTMLElement.
+   */
+  whenChildAppElementsReady = AppHTMLElement.whenChildAppElementsReady;
 
   /**
    *

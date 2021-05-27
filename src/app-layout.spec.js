@@ -27,15 +27,18 @@ announce its readiness.
 */
 
 describe('app-layout', () => {
-  before(() => AppHTMLElement.loadTemplate(testScreen, '/src/app-layout.fixture.html'));
+  // TODO: Consider loadin the fixtures in an iframe so that potential
+  // navigations inside the element doesn not nagivate away from the
+  // test runner. Is this relevant.
+  before(async () => {
+    await AppHTMLElement.loadTemplate(testScreen, '/src/app-layout.fixture.html');
+    await AppHTMLElement.whenChildAppElementsReady(testScreen, ['app-layout']);
+  });
 
-  it('exists', async () => {
+  it('has the expected height', async () => {
     const appLayout = /** @type {HTMLElement} */ (testScreen.querySelector('app-layout'));
+    const expectedHeight = 92;
 
-    expect(appLayout).to.exist;
-
-    await new Promise(resolve => appLayout.addEventListener('ready', resolve));
-
-    expect(appLayout.offsetHeight).to.equal(92);
+    expect(appLayout.offsetHeight).to.equal(expectedHeight);
   });
 });

@@ -3,5 +3,5 @@ if (location.hostname === 'localhost') {
 }
 
 function setupLiveReload() {
-  loadScript(document.body, 'http://localhost:35729/livereload.js?snipver=1');
+  AppHTMLElement.loadScript(document.body, 'http://localhost:35729/livereload.js?snipver=1');
 }

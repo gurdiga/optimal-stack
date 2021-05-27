@@ -1,12 +1,7 @@
 customElements.define(
   'sign-in-form',
 
-  class extends HTMLElement {
-    shadowRoot = this.attachShadow({ mode: 'open' });
+  class extends AppHTMLElement {
     template = '/src/sign-in-form.html';
-
-    connectedCallback() {
-      loadTemplate(this.shadowRoot, this.template);
-    }
   }
 );

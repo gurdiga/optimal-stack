@@ -27,7 +27,7 @@ announce its readiness.
 */
 
 describe('app-layout', () => {
-  before(() => loadTemplate(testScreen, '/src/app-layout.fixture.html'));
+  before(() => AppHTMLElement.loadTemplate(testScreen, '/src/app-layout.fixture.html'));
 
   it('exists', async () => {
     const appLayout = /** @type {HTMLElement} */ (testScreen.querySelector('app-layout'));

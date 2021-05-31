@@ -4,7 +4,8 @@ Here I’m playing with the idea of having the simplest working frontend stack:
 
 - No transpilation;
 - Web Components handle the abstraction;
-- Type-checking is done with TypeScript (see `jsconfig.json`).
+- Type-checking is done with TypeScript (see `jsconfig.json`);
+- Generally the workflow is optimised for VSCode.
 
 ## Web Components Guidelines
 
